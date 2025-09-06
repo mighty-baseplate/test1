@@ -101,10 +101,13 @@ const CHARACTER_EMOTIONS = {
   }
 };
 
-// Detect emotion from text
+// Detect emotion from text and return both emoji and expression name
 export const detectEmotion = (text, characterId) => {
   if (!text || typeof text !== 'string') {
-    return getCharacterExpression(characterId, EMOTIONS.DEFAULT);
+    return {
+      emoji: getCharacterExpression(characterId, EMOTIONS.DEFAULT),
+      expression: EMOTIONS.DEFAULT
+    };
   }
 
   const lowerText = text.toLowerCase();
@@ -113,23 +116,40 @@ export const detectEmotion = (text, characterId) => {
   for (const [emotion, patterns] of Object.entries(EMOTION_PATTERNS)) {
     for (const pattern of patterns) {
       if (pattern.test(lowerText)) {
-        return getCharacterExpression(characterId, emotion);
+        return {
+          emoji: getCharacterExpression(characterId, emotion),
+          expression: emotion
+        };
       }
     }
   }
 
   // Check for questions (thinking expression)
   if (lowerText.includes('?') || lowerText.startsWith('what') || lowerText.startsWith('how') || lowerText.startsWith('why')) {
-    return getCharacterExpression(characterId, EMOTIONS.THINKING);
+    return {
+      emoji: getCharacterExpression(characterId, EMOTIONS.THINKING),
+      expression: EMOTIONS.THINKING
+    };
   }
 
   // Check for exclamations (excited expression)
   if (lowerText.includes('!') && !lowerText.includes('warning') && !lowerText.includes('danger')) {
-    return getCharacterExpression(characterId, EMOTIONS.EXCITED);
+    return {
+      emoji: getCharacterExpression(characterId, EMOTIONS.EXCITED),
+      expression: EMOTIONS.EXCITED
+    };
   }
 
   // Default expression
-  return getCharacterExpression(characterId, EMOTIONS.DEFAULT);
+  return {
+    emoji: getCharacterExpression(characterId, EMOTIONS.DEFAULT),
+    expression: EMOTIONS.DEFAULT
+  };
+};
+
+// Legacy function for backward compatibility
+export const detectEmotionEmoji = (text, characterId) => {
+  return detectEmotion(text, characterId).emoji;
 };
 
 // Get character-specific expression

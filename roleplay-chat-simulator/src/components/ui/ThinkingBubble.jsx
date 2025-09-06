@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { clsx } from 'clsx';
-import DynamicAvatar from './DynamicAvatar';
+import CharacterAvatar from './CharacterAvatar';
 
 const ThinkingBubble = ({ 
   character, 
@@ -73,11 +73,11 @@ const ThinkingBubble = ({
       'flex items-end space-x-3 mb-4 animate-fade-in',
       className
     )}>
-      <DynamicAvatar 
+      <CharacterAvatar 
         character={character}
         isTyping={true}
         size="md"
-        showParticles={true}
+        showAnimation={true}
         className="animate-pulse"
       />
       

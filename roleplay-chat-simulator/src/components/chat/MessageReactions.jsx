@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { clsx } from 'clsx';
-import { detectEmotion } from '../../utils/emotionDetector';
+import { detectEmotionEmoji } from '../../utils/emotionDetector';
 
 const MessageReactions = ({ 
   message, 
@@ -71,7 +71,7 @@ const MessageReactions = ({
       });
 
       // Add emotion-based reactions
-      const emotion = detectEmotion(message.text, character.id);
+      const emotion = detectEmotionEmoji(message.text, character.id);
       if (emotion && !newReactions.includes(emotion)) {
         newReactions.push(emotion);
       }

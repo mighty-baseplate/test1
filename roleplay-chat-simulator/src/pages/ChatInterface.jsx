@@ -8,7 +8,7 @@ import { useApp } from '../context/AppContext';
 import ChatContainer from '../components/chat/ChatContainer';
 import ChatInput from '../components/chat/ChatInput';
 import Button from '../components/ui/Button';
-import DynamicAvatar from '../components/ui/DynamicAvatar';
+import CharacterAvatar from '../components/ui/CharacterAvatar';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import VisualEffects from '../components/ui/VisualEffects';
 import { 
@@ -123,12 +123,12 @@ const ChatInterface = () => {
                 <ArrowLeft size={20} />
               </Button>
               
-              <DynamicAvatar
+              <CharacterAvatar
                 character={currentCharacter}
                 message={messages[messages.length - 1]}
                 isTyping={isTyping}
                 size="md"
-                showParticles={false}
+                showAnimation={true}
               />
               
               <div>

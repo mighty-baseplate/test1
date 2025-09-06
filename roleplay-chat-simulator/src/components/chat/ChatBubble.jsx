@@ -1,7 +1,7 @@
 import React from 'react';
 import { clsx } from 'clsx';
 import Avatar from '../ui/Avatar';
-import DynamicAvatar from '../ui/DynamicAvatar';
+import CharacterAvatar from '../ui/CharacterAvatar';
 import MessageReactions from './MessageReactions';
 import { formatTimestamp } from '../../utils/helpers';
 
@@ -21,11 +21,11 @@ const ChatBubble = ({
     return (
       <div className={clsx('flex items-end space-x-2 mb-4 animate-fade-in', className)}>
       {showAvatar && (
-        <DynamicAvatar 
+        <CharacterAvatar 
           character={character}
           isTyping={true}
           size="sm"
-          showParticles={false}
+          showAnimation={true}
         />
       )}
         <div className="bg-white border-2 border-gray-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-md">
@@ -55,12 +55,12 @@ const ChatBubble = ({
             alt="You"
           />
         ) : (
-          <DynamicAvatar 
+          <CharacterAvatar 
             character={character}
             message={message}
             isTyping={false}
             size="sm"
-            showParticles={true}
+            showAnimation={true}
           />
         )
       )}

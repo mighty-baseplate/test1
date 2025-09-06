@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { clsx } from 'clsx';
-import DynamicAvatar from './DynamicAvatar';
+import CharacterAvatar from './CharacterAvatar';
 import VisualEffects from './VisualEffects';
 
 const CharacterPreview = ({ character, isActive = false, className = '' }) => {
@@ -70,11 +70,11 @@ const CharacterPreview = ({ character, isActive = false, className = '' }) => {
       <div className="relative z-10 p-6">
         {/* Character Avatar */}
         <div className="flex justify-center mb-4">
-          <DynamicAvatar 
+          <CharacterAvatar 
             character={character}
             message={currentMessage}
             size="3xl"
-            showParticles={isActive}
+            showAnimation={isActive}
             className="hover:scale-110 transition-transform duration-300"
           />
         </div>

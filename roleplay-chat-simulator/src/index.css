@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+}
+
+@layer components {
+  .chat-bubble-user {
+    @apply bg-blue-500 text-white rounded-2xl rounded-br-md px-4 py-2 max-w-xs ml-auto shadow-md;
+  }
+  
+  .chat-bubble-ai {
+    @apply bg-white border-2 border-gray-200 rounded-2xl rounded-bl-md px-4 py-2 max-w-xs mr-auto shadow-md;
+  }
+  
+  .character-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-200;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-typing-dots;
+  }
+}
+
+@layer utilities {
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animate-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animate-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .animate-delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  .animate-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animate-delay-3000 {
+    animation-delay: 3s;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(-5px) rotate(-5deg); }
+    75% { transform: translateY(-15px) rotate(3deg); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { filter: drop-shadow(0 0 5px currentColor); }
+    to { filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 30px currentColor); }
+  }
+
+  .animate-wiggle {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+}

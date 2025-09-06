@@ -44,9 +44,21 @@ const CharacterPicker = () => {
             Each character has their own personality, speaking style, and unique perspective.
           </p>
 
-          <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
-            <MessageCircle size={16} />
-            <span>Powered by Google Gemini AI</span>
+          <div className="flex items-center justify-center space-x-4 mb-4">
+            <div className="flex items-center space-x-2 text-sm text-gray-500">
+              <MessageCircle size={16} />
+              <span>Powered by Google Gemini AI</span>
+            </div>
+            
+            <Button
+              onClick={() => navigate('/fast')}
+              variant="outline"
+              size="sm"
+              className="flex items-center space-x-2 border-green-300 text-green-700 hover:bg-green-50"
+            >
+              <Zap size={16} />
+              <span>⚡ Fast Demo Mode</span>
+            </Button>
           </div>
         </div>
 

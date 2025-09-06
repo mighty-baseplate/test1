@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans;
+  }
+}
+
+@layer components {
+  .chat-bubble-user {
+    @apply bg-blue-500 text-white rounded-2xl rounded-br-md px-4 py-2 max-w-xs ml-auto shadow-md;
+  }
+  
+  .chat-bubble-ai {
+    @apply bg-white border-2 border-gray-200 rounded-2xl rounded-bl-md px-4 py-2 max-w-xs mr-auto shadow-md;
+  }
+  
+  .character-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border-2 border-transparent hover:border-blue-200;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-typing-dots;
+  }
+}
+
+@layer utilities {
+  .animate-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animate-delay-400 {
+    animation-delay: 0.4s;
+  }
+}

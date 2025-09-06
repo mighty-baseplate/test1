@@ -14,6 +14,20 @@ export const characters = [
       rate: 0.8,
       pitch: 0.7,
       voice: 'male-deep'
+    },
+    expressions: {
+      default: '🧙‍♂️',
+      thinking: '🤔',
+      happy: '😊',
+      wise: '✨',
+      mysterious: '🌟',
+      serious: '😤',
+      greeting: '👋'
+    },
+    visualEffects: {
+      particles: '✨',
+      background: 'magical-sparkles',
+      color: 'golden'
     }
   },
   {
@@ -31,6 +45,21 @@ export const characters = [
       rate: 0.9,
       pitch: 0.8,
       voice: 'male-british'
+    },
+    expressions: {
+      default: '🕵️‍♂️',
+      thinking: '🧐',
+      happy: '😏',
+      wise: '💡',
+      mysterious: '🔍',
+      serious: '😠',
+      greeting: '🎩',
+      deducing: '🔎'
+    },
+    visualEffects: {
+      particles: '💡',
+      background: 'detective-notes',
+      color: 'blue'
     }
   },
   {
@@ -48,6 +77,22 @@ export const characters = [
       rate: 1.0,
       pitch: 1.2,
       voice: 'male-robotic'
+    },
+    expressions: {
+      default: '👽',
+      thinking: '🤖',
+      happy: '😎',
+      excited: '🎵',
+      mysterious: '🌠',
+      serious: '⚡',
+      greeting: '🚀',
+      dancing: '🕺',
+      music: '🎶'
+    },
+    visualEffects: {
+      particles: '🌟',
+      background: 'cosmic-waves',
+      color: 'neon-green'
     }
   }
 ];

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import ChatBubble from './ChatBubble';
-import TypingIndicator from './TypingIndicator';
+import ThinkingBubble from '../ui/ThinkingBubble';
 import { scrollToBottom } from '../../utils/helpers';
 
 const ChatContainer = ({ 
@@ -58,7 +58,7 @@ const ChatContainer = ({
           ))}
           
           {isTyping && (
-            <TypingIndicator character={character} />
+            <ThinkingBubble character={character} />
           )}
         </>
       )}

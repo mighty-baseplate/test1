@@ -1,7 +1,7 @@
 import React from 'react';
 import { clsx } from 'clsx';
 import Card from '../ui/Card';
-import Avatar from '../ui/Avatar';
+import DynamicAvatar from '../ui/DynamicAvatar';
 
 const CharacterCard = ({ 
   character, 
@@ -39,11 +39,11 @@ const CharacterCard = ({
       <div className="relative z-10">
         {/* Character Avatar */}
         <div className="flex justify-center mb-4">
-          <Avatar 
-            emoji={avatar}
-            size="2xl"
-            alt={name}
-            className="ring-4 ring-white shadow-lg"
+          <DynamicAvatar 
+            character={character}
+            size="3xl"
+            showParticles={true}
+            className="ring-4 ring-white shadow-lg hover:ring-8 transition-all duration-300"
           />
         </div>
         

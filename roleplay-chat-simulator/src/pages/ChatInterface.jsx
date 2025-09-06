@@ -8,8 +8,9 @@ import { useApp } from '../context/AppContext';
 import ChatContainer from '../components/chat/ChatContainer';
 import ChatInput from '../components/chat/ChatInput';
 import Button from '../components/ui/Button';
-import Avatar from '../components/ui/Avatar';
+import DynamicAvatar from '../components/ui/DynamicAvatar';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
+import VisualEffects from '../components/ui/VisualEffects';
 import { 
   ArrowLeft, 
   Volume2, 
@@ -100,9 +101,15 @@ const ChatInterface = () => {
 
   return (
     <div 
-      className={`min-h-screen ${themeClasses.background} transition-all duration-500`}
+      className={`min-h-screen ${themeClasses.background} transition-all duration-500 relative overflow-hidden`}
     >
-      <div className="flex flex-col h-screen max-w-4xl mx-auto">
+      {/* Visual Effects Background */}
+      <VisualEffects 
+        character={currentCharacter} 
+        isActive={!isLoading && messages.length > 0}
+      />
+      
+      <div className="flex flex-col h-screen max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 px-4 py-3 shadow-sm">
           <div className="flex items-center justify-between">
@@ -116,10 +123,12 @@ const ChatInterface = () => {
                 <ArrowLeft size={20} />
               </Button>
               
-              <Avatar
-                emoji={currentCharacter.avatar}
+              <DynamicAvatar
+                character={currentCharacter}
+                message={messages[messages.length - 1]}
+                isTyping={isTyping}
                 size="md"
-                alt={currentCharacter.name}
+                showParticles={false}
               />
               
               <div>

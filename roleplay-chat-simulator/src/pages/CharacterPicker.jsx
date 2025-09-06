@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { characters } from '../data/characters';
 import { useChat } from '../hooks/useChat';
 import CharacterGrid from '../components/character/CharacterGrid';
+import CharacterPreview from '../components/ui/CharacterPreview';
 import Button from '../components/ui/Button';
-import { Sparkles, MessageCircle } from 'lucide-react';
+import VisualEffects from '../components/ui/VisualEffects';
+import { Sparkles, MessageCircle, Zap, Heart } from 'lucide-react';
 
 const CharacterPicker = () => {
   const navigate = useNavigate();
   const { selectCharacter, currentCharacter } = useChat();
+  const [hoveredCharacter, setHoveredCharacter] = useState(null);
 
   const handleCharacterSelect = (character) => {
     selectCharacter(character);
@@ -19,8 +22,11 @@ const CharacterPicker = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
+      {/* Animated Background Effects */}
+      <VisualEffects character={hoveredCharacter} isActive={!!hoveredCharacter} />
+      
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
@@ -50,37 +56,64 @@ const CharacterPicker = () => {
             Select Your Character
           </h2>
           
-          <CharacterGrid
-            characters={characters}
-            onCharacterSelect={handleCharacterSelect}
-            selectedCharacterId={currentCharacter?.id}
-          />
+          {/* Character Previews Grid */}
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto mb-8">
+            {characters.map((character, index) => (
+              <div
+                key={character.id}
+                onMouseEnter={() => setHoveredCharacter(character)}
+                onMouseLeave={() => setHoveredCharacter(null)}
+                onClick={() => handleCharacterSelect(character)}
+                className="cursor-pointer transform transition-all duration-300 hover:scale-105"
+                style={{
+                  animationDelay: `${index * 200}ms`
+                }}
+              >
+                <CharacterPreview 
+                  character={character}
+                  isActive={hoveredCharacter?.id === character.id}
+                  className="h-full animate-slide-up"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Features */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <div className="text-3xl mb-3">🎭</div>
-              <h3 className="font-semibold text-gray-800 mb-2">Immersive Roleplay</h3>
+        {/* Enhanced Features */}
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-2xl font-semibold text-gray-800 text-center mb-8">
+            ✨ Amazing Features
+          </h3>
+          <div className="grid md:grid-cols-4 gap-6 text-center">
+            <div className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl mb-4 animate-bounce">🎭</div>
+              <h3 className="font-semibold text-gray-800 mb-2">Dynamic Expressions</h3>
               <p className="text-sm text-gray-600">
-                Each character stays true to their personality and speaking style
+                Characters show emotions and reactions based on your conversation
               </p>
             </div>
             
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <div className="text-3xl mb-3">🔊</div>
-              <h3 className="font-semibold text-gray-800 mb-2">Voice Output</h3>
+            <div className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl mb-4 animate-pulse">🔊</div>
+              <h3 className="font-semibold text-gray-800 mb-2">Voice Synthesis</h3>
               <p className="text-sm text-gray-600">
-                Optional text-to-speech with character-specific voice settings
+                High-quality TTS with character-specific voices and emotions
               </p>
             </div>
             
-            <div className="p-6 bg-white rounded-lg shadow-md">
-              <div className="text-3xl mb-3">💾</div>
-              <h3 className="font-semibold text-gray-800 mb-2">Chat History</h3>
+            <div className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl mb-4 animate-spin" style={{ animationDuration: '3s' }}>✨</div>
+              <h3 className="font-semibold text-gray-800 mb-2">Visual Effects</h3>
               <p className="text-sm text-gray-600">
-                Your conversations are saved and can be continued later
+                Beautiful animations and particle effects for each character
+              </p>
+            </div>
+            
+            <div className="p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <div className="text-4xl mb-4 animate-glow">💾</div>
+              <h3 className="font-semibold text-gray-800 mb-2">Smart Memory</h3>
+              <p className="text-sm text-gray-600">
+                Conversations are remembered and characters learn from your chats
               </p>
             </div>
           </div>

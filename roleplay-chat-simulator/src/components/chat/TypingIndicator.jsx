@@ -1,6 +1,6 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import Avatar from '../ui/Avatar';
+import DynamicAvatar from '../ui/DynamicAvatar';
 
 const TypingIndicator = ({ 
   character,
@@ -10,10 +10,11 @@ const TypingIndicator = ({
   return (
     <div className={clsx('flex items-end space-x-2 mb-4 animate-fade-in', className)}>
       {showAvatar && (
-        <Avatar 
-          emoji={character?.avatar} 
-          size="sm" 
-          alt={character?.name}
+        <DynamicAvatar 
+          character={character}
+          isTyping={true}
+          size="sm"
+          showParticles={false}
         />
       )}
       <div 

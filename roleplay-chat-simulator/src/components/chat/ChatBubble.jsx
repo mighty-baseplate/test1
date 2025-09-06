@@ -1,6 +1,8 @@
 import React from 'react';
 import { clsx } from 'clsx';
 import Avatar from '../ui/Avatar';
+import DynamicAvatar from '../ui/DynamicAvatar';
+import MessageReactions from './MessageReactions';
 import { formatTimestamp } from '../../utils/helpers';
 
 const ChatBubble = ({ 
@@ -18,13 +20,14 @@ const ChatBubble = ({
   if (isTyping && isAI) {
     return (
       <div className={clsx('flex items-end space-x-2 mb-4 animate-fade-in', className)}>
-        {showAvatar && (
-          <Avatar 
-            emoji={character?.avatar} 
-            size="sm" 
-            alt={character?.name}
-          />
-        )}
+      {showAvatar && (
+        <DynamicAvatar 
+          character={character}
+          isTyping={true}
+          size="sm"
+          showParticles={false}
+        />
+      )}
         <div className="bg-white border-2 border-gray-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-md">
           <div className="flex space-x-1">
             <div className="typing-dot"></div>
@@ -45,11 +48,21 @@ const ChatBubble = ({
       )}
     >
       {showAvatar && (
-        <Avatar 
-          emoji={isUser ? '👤' : character?.avatar} 
-          size="sm" 
-          alt={isUser ? 'You' : character?.name}
-        />
+        isUser ? (
+          <Avatar 
+            emoji="👤"
+            size="sm" 
+            alt="You"
+          />
+        ) : (
+          <DynamicAvatar 
+            character={character}
+            message={message}
+            isTyping={false}
+            size="sm"
+            showParticles={true}
+          />
+        )
       )}
       
       <div className="flex flex-col max-w-xs lg:max-w-md">
@@ -79,6 +92,15 @@ const ChatBubble = ({
           >
             {formatTimestamp(timestamp)}
           </span>
+        )}
+
+        {/* Message Reactions - only for AI messages */}
+        {isAI && character && (
+          <MessageReactions 
+            message={message}
+            character={character}
+            className={isUser ? 'justify-end' : 'justify-start'}
+          />
         )}
       </div>
     </div>
